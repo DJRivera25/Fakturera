@@ -1,11 +1,10 @@
 # Fakturera App
 
-A mini full-stack application replicating the Terms and Pricelist pages from 123fakturera.se.
+A mini full-stack application replicating the Terms page from 123fakturera.se.
 
 ## Features
 
 - **Terms Page**: Replica of the original terms page with language toggle (English/Swedish)
-- **Pricelist Page**: Editable product list with search, add, edit, and delete functionality
 - **Responsive Design**: Works on mobile, tablet, and desktop
 - **Database Integration**: PostgreSQL with Sequelize ORM
 - **Dynamic API Configuration**: Environment-based API URL management
@@ -38,19 +37,39 @@ fakturera/
 ├── client/                 # React frontend
 │   ├── src/
 │   │   ├── components/     # Reusable components
+│   │   │   ├── CloseButton.jsx
+│   │   │   ├── Navbar.jsx
+│   │   │   └── TermsContent.jsx
 │   │   ├── pages/         # Page components
+│   │   │   └── TermsPage.jsx
 │   │   ├── services/      # API services
+│   │   │   └── api.js
 │   │   ├── config/        # Configuration files
-│   │   └── ...
+│   │   │   └── api.js
+│   │   ├── App.jsx
+│   │   ├── main.jsx
+│   │   └── index.css
 │   ├── env.example        # Environment variables example
-│   └── ...
+│   ├── package.json
+│   ├── vite.config.js
+│   └── vercel.json
 ├── server/                # Express backend
 │   ├── models/           # Sequelize models
+│   │   ├── index.js
+│   │   └── Terms.js
 │   ├── routes/           # API routes
+│   │   └── terms.js
 │   ├── seeders/          # Database seeders
-│   ├── .env.example      # Environment variables example
-│   └── ...
-└── ...
+│   │   └── terms-seeder.js
+│   ├── config/           # Configuration
+│   │   └── cors.js
+│   ├── index.js          # Main server file
+│   ├── seed.js           # Database seeding script
+│   ├── env.example       # Environment variables example
+│   └── package.json
+├── render.yaml           # Render deployment configuration
+├── package.json          # Root package.json
+└── README.md
 ```
 
 ## Quick Start
@@ -77,7 +96,7 @@ npm run install-all
 
 ```bash
 cd server
-cp .env.example .env
+cp env.example .env
 ```
 
 Edit `server/.env` with your PostgreSQL credentials:
@@ -138,15 +157,6 @@ This will start both:
 - `GET /api/terms/:language` - Get terms by language (en/sv)
 - `PUT /api/terms/:id` - Update terms content
 
-### Pricelist
-
-- `GET /api/pricelist` - Get all pricelist items
-- `GET /api/pricelist?search=query` - Search pricelist items
-- `GET /api/pricelist/:id` - Get single pricelist item
-- `POST /api/pricelist` - Create new pricelist item
-- `PUT /api/pricelist/:id` - Update pricelist item
-- `DELETE /api/pricelist/:id` - Soft delete pricelist item
-
 ## Database Schema
 
 ### Terms Table
@@ -154,28 +164,8 @@ This will start both:
 ```sql
 CREATE TABLE terms (
   id SERIAL PRIMARY KEY,
-  section VARCHAR(50) NOT NULL,
-  title_en TEXT NOT NULL,
-  title_sv TEXT NOT NULL,
   content_en TEXT NOT NULL,
   content_sv TEXT NOT NULL,
-  "order" INTEGER DEFAULT 1,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
-```
-
-### Pricelist Table
-
-```sql
-CREATE TABLE pricelist (
-  id SERIAL PRIMARY KEY,
-  product_name VARCHAR(255) NOT NULL,
-  description TEXT,
-  in_price DECIMAL(10,2),
-  price DECIMAL(10,2) NOT NULL,
-  stock INTEGER DEFAULT 0,
-  deleted_at TIMESTAMP NULL,
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
@@ -194,8 +184,8 @@ The application is fully responsive with breakpoints:
 
 - Navigation links hide on mobile/tablet
 - Hamburger menu for mobile navigation
-- Table columns hide/show based on screen size
 - Touch-friendly interface elements
+- Responsive text sizing and spacing
 
 ## External Resources
 
@@ -213,7 +203,7 @@ The application uses these external resources:
 2. Create a new Web Service
 3. Set build command: `cd server && npm install`
 4. Set start command: `cd server && npm start`
-5. Add environment variables from `server/.env.example`
+5. Add environment variables from `server/env.example`
 
 ### Frontend (Vercel)
 
