@@ -51,32 +51,29 @@ const TermsPage = () => {
       <div className="background-image"></div>
 
       {/* Navbar */}
-      {loading ? (
-        <Navbar language={language} onLanguageToggle={handleLanguageToggle} loading={true} />
-      ) : (
-        <Navbar language={language} onLanguageToggle={handleLanguageToggle} loading={false} />
+      <Navbar language={language} onLanguageToggle={handleLanguageToggle} loading={loading} />
+
+      {/* Page Content - Hidden during initial loading */}
+      {!loading && (
+        <>
+          <div className="page-title-section">
+            <h1 className="page-title">{language === "en" ? "Terms" : "Villkor"}</h1>
+            {/* Close Button */}
+            <CloseButton language={language} onClick={handleClose} />
+          </div>
+
+          {/* Main Content Container */}
+          <div className="terms-page-container">
+            <div className="terms-content-box">
+              {/* Terms Content */}
+              <TermsContent terms={terms} language={language} loading={false} />
+            </div>
+            <div className="page-title-section">
+              <CloseButton language={language} onClick={handleClose} />
+            </div>
+          </div>
+        </>
       )}
-
-      <div className="page-title-section">
-        <h1 className="page-title">{language === "en" ? "Terms" : "Villkor"}</h1>
-        {/* Close Button */}
-        <CloseButton language={language} onClick={handleClose} />
-      </div>
-
-      {/* Main Content Container */}
-      <div className="terms-page-container">
-        <div className="terms-content-box">
-          {/* Terms Content */}
-          {loading ? (
-            <TermsContent terms={terms} language={language} loading={true} />
-          ) : (
-            <TermsContent terms={terms} language={language} loading={false} />
-          )}
-        </div>
-        <div className="page-title-section">
-          <CloseButton language={language} onClick={handleClose} />
-        </div>
-      </div>
     </div>
   );
 };

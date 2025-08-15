@@ -46,28 +46,29 @@ const Navbar = ({ language, onLanguageToggle, loading }) => {
       <div className="navbar-content">
         {/* Left side - Logo and Hamburger Menu */}
         <div className="navbar-left">
-          <button className="hamburger-menu" onClick={onMenuClick} aria-label="Toggle menu">
-            <span className="hamburger-line"></span>
-            <span className="hamburger-line"></span>
-            <span className="hamburger-line"></span>
-          </button>
-
-          {/* Logo - Hidden when menu is open */}
-          {!isMenuOpen && (
-            <div className="logo">
-              <img
-                src="https://storage.123fakturera.se/public/icons/diamond.png"
-                alt="123Fakturera"
-                className="logo-icon"
-              />
-            </div>
+          {/* Hamburger Menu - Hidden during initial loading */}
+          {!loading && (
+            <button className="hamburger-menu" onClick={onMenuClick} aria-label="Toggle menu">
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+              <span className="hamburger-line"></span>
+            </button>
           )}
+
+          {/* Logo - Always visible, even during loading */}
+          <div className="logo">
+            <img
+              src="https://storage.123fakturera.se/public/icons/diamond.png"
+              alt="123Fakturera"
+              className="logo-icon"
+            />
+          </div>
         </div>
 
         {/* Right side - Navigation links and Language selector */}
         <div className="navbar-right">
-          {/* Navigation Links - Hidden when menu is open */}
-          {!isMenuOpen && (
+          {/* Navigation Links - Hidden during loading and when menu is open */}
+          {!loading && !isMenuOpen && (
             <nav className="nav-links">
               {navLinks.map((link, index) => (
                 <a key={index} href={link.href} className="nav-link">
@@ -77,43 +78,45 @@ const Navbar = ({ language, onLanguageToggle, loading }) => {
             </nav>
           )}
 
-          {/* Language Selector - Always visible */}
-          <div className="language-selector-container">
-            <div className="language-selector" onClick={toggleLanguageDropdown}>
-              <span className="language-text">{language === "en" ? "English" : "Svenska"}</span>
-              <img
-                src={
-                  language === "en"
-                    ? "https://storage.123fakturere.no/public/flags/GB.png"
-                    : "https://storage.123fakturere.no/public/flags/SE.png"
-                }
-                alt={language === "en" ? "English" : "Swedish"}
-                className="flag-icon"
-              />
-            </div>
-
-            {/* Language Dropdown */}
-            {isLanguageDropdownOpen && (
-              <div className="language-dropdown">
-                <div className="dropdown-item" onClick={() => selectLanguage("sv")}>
-                  <span className="dropdown-text">Svenska</span>
-                  <img
-                    src="https://storage.123fakturere.no/public/flags/SE.png"
-                    alt="Swedish"
-                    className="dropdown-flag"
-                  />
-                </div>
-                <div className="dropdown-item" onClick={() => selectLanguage("en")}>
-                  <span className="dropdown-text">English</span>
-                  <img
-                    src="https://storage.123fakturere.no/public/flags/GB.png"
-                    alt="English"
-                    className="dropdown-flag"
-                  />
-                </div>
+          {/* Language Selector - Hidden during initial loading */}
+          {!loading && (
+            <div className="language-selector-container">
+              <div className="language-selector" onClick={toggleLanguageDropdown}>
+                <span className="language-text">{language === "en" ? "English" : "Svenska"}</span>
+                <img
+                  src={
+                    language === "en"
+                      ? "https://storage.123fakturere.no/public/flags/GB.png"
+                      : "https://storage.123fakturere.no/public/flags/SE.png"
+                  }
+                  alt={language === "en" ? "English" : "Swedish"}
+                  className="flag-icon"
+                />
               </div>
-            )}
-          </div>
+
+              {/* Language Dropdown */}
+              {isLanguageDropdownOpen && (
+                <div className="language-dropdown">
+                  <div className="dropdown-item" onClick={() => selectLanguage("sv")}>
+                    <span className="dropdown-text">Svenska</span>
+                    <img
+                      src="https://storage.123fakturere.no/public/flags/SE.png"
+                      alt="Swedish"
+                      className="dropdown-flag"
+                    />
+                  </div>
+                  <div className="dropdown-item" onClick={() => selectLanguage("en")}>
+                    <span className="dropdown-text">English</span>
+                    <img
+                      src="https://storage.123fakturere.no/public/flags/GB.png"
+                      alt="English"
+                      className="dropdown-flag"
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 

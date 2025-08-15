@@ -1,7 +1,7 @@
 import React from "react";
 import "./TermsContent.css";
 
-const TermsContent = ({ terms, language }) => {
+const TermsContent = ({ terms, language, loading }) => {
   return (
     <div className="terms-content">
       <div className="terms-content-container">
