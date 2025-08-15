@@ -35,7 +35,8 @@ services:
           property: password
     healthCheckPath: /api/health
 
-  - type: pserv
-    name: fakturera-db
-    env: postgresql
+databases:
+  - name: fakturera-db
     plan: free
+    databaseName: fakturera
+    user: fakturera_user
