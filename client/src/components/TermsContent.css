@@ -5,6 +5,7 @@
   height: 100%;
   overflow: hidden;
   transition: all 0.3s ease;
+  min-height: 2000px;
 }
 
 .terms-content-container {
