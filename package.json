@@ -1,0 +1,25 @@
+{
+  "name": "fakturera-app",
+  "version": "1.0.0",
+  "description": "Mini full-stack application with Terms and Pricelist pages",
+  "main": "server/index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "install-all": "npm install && cd server && npm install && cd ../client && npm install"
+  },
+  "keywords": [
+    "react",
+    "express",
+    "postgresql",
+    "sequelize"
+  ],
+  "author": "Senior Web Developer",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

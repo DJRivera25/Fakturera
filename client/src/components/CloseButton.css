@@ -1,0 +1,43 @@
+.close-button {
+  background: #089e1e;
+  color: white;
+  border: none;
+  margin-top: 24px;
+  padding: 16px 40px;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+  min-width: 270px;
+  min-height: 54px;
+  text-transform: none;
+  letter-spacing: 0.5px;
+}
+
+.close-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+.close-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.3), 0 2px 8px rgba(76, 175, 80, 0.3);
+}
+
+@media (max-width: 768px) {
+  .close-button {
+    padding: 10px 25px;
+    font-size: 14px;
+    max-width: 260px;
+  }
+}
+
+@media (max-width: 575px) {
+  .close-button {
+    padding: 8px 20px;
+    font-size: 13px;
+    max-width: 260px;
+  }
+}
