@@ -16,7 +16,9 @@ const TermsPage = () => {
 
   const fetchTerms = async () => {
     try {
-      setLoading(true);
+      if (terms.length === 0) {
+        setLoading(true);
+      }
       const response = await termsAPI.getByLanguage(language);
       setTerms(response.data);
     } catch (error) {
