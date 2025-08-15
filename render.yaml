@@ -5,7 +5,7 @@ services:
     plan: free
     rootDir: server
     buildCommand: npm install
-    startCommand: npm start
+    startCommand: npm run seed && npm start
     envVars:
       - key: NODE_ENV
         value: production
@@ -34,7 +34,6 @@ services:
           name: fakturera-db
           property: password
     healthCheckPath: /api/health
-
 databases:
   - name: fakturera-db
     plan: free

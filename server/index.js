@@ -28,6 +28,30 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "OK", message: "Server is running" });
 });
 
+// Seed database endpoint
+app.post("/api/seed", async (req, res) => {
+  try {
+    const seedTerms = require("./seeders/terms-seeder");
+    const seedPricelist = require("./seeders/pricelist-seeder");
+
+    console.log("Starting database seeding...");
+
+    // Sync database
+    await sequelize.sync({ alter: true });
+    console.log("Database synchronized.");
+
+    // Run seeders
+    await seedTerms();
+    await seedPricelist();
+
+    console.log("All seeds completed successfully!");
+    res.json({ status: "OK", message: "Database seeded successfully" });
+  } catch (error) {
+    console.error("Error seeding database:", error);
+    res.status(500).json({ status: "ERROR", message: "Failed to seed database", error: error.message });
+  }
+});
+
 // Database connection and server start
 async function startServer() {
   try {

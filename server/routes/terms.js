@@ -23,9 +23,20 @@ router.get("/:language", async (req, res) => {
       return res.status(400).json({ error: "Invalid language. Use 'en' or 'sv'" });
     }
 
-    const terms = await Terms.findAll({
+    let terms = await Terms.findAll({
       attributes: ["id", `content_${language}`],
     });
+
+    // Auto-seed if no terms found
+    if (terms.length === 0) {
+      console.log("No terms found, auto-seeding database...");
+      const seedTerms = require("../seeders/terms-seeder");
+      await seedTerms();
+
+      terms = await Terms.findAll({
+        attributes: ["id", `content_${language}`],
+      });
+    }
 
     res.json(terms);
   } catch (error) {

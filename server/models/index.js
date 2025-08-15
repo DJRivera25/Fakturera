@@ -31,4 +31,3 @@ db.Terms = require("./Terms")(sequelize, Sequelize);
 db.Pricelist = require("./Pricelist")(sequelize, Sequelize);
 
 module.exports = db;
-
