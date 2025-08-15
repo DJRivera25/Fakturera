@@ -26,10 +26,5 @@
         }
       ]
     }
-  ],
-  "functions": {
-    "client/src/**/*.jsx": {
-      "runtime": "nodejs18.x"
-    }
-  }
+  ]
 }
