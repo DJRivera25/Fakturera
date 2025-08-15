@@ -3,6 +3,7 @@ services:
     name: fakturera-backend
     env: node
     plan: free
+    rootDir: server
     buildCommand: npm install
     startCommand: npm start
     envVars:
@@ -12,8 +13,6 @@ services:
         value: 10000
       - key: FRONTEND_URL
         value: https://fakturera-two.vercel.app/
-    healthCheckPath: /api/health
-    envVars:
       - key: DB_HOST
         fromDatabase:
           name: fakturera-db
@@ -34,6 +33,7 @@ services:
         fromDatabase:
           name: fakturera-db
           property: password
+    healthCheckPath: /api/health
 
   - type: pserv
     name: fakturera-db
