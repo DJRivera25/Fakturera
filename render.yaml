@@ -39,4 +39,3 @@ services:
     name: fakturera-db
     env: postgresql
     plan: free
-    ipAllowList: []
