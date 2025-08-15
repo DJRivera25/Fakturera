@@ -3,19 +3,40 @@ services:
     name: fakturera-backend
     env: node
     plan: free
-    buildCommand: cd server && npm install
-    startCommand: cd server && npm start
+    buildCommand: npm install
+    startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 10000
+      - key: FRONTEND_URL
+        value: https://fakturera-two.vercel.app/
+    healthCheckPath: /api/health
+    envVars:
       - key: DB_HOST
-        sync: false
+        fromDatabase:
+          name: fakturera-db
+          property: host
       - key: DB_PORT
-        sync: false
+        fromDatabase:
+          name: fakturera-db
+          property: port
       - key: DB_NAME
-        sync: false
+        fromDatabase:
+          name: fakturera-db
+          property: database
       - key: DB_USER
-        sync: false
+        fromDatabase:
+          name: fakturera-db
+          property: user
       - key: DB_PASSWORD
-        sync: false
+        fromDatabase:
+          name: fakturera-db
+          property: password
 
+  - type: pserv
+    name: fakturera-db
+    env: postgresql
+    plan: free
+    ipAllowList: []
