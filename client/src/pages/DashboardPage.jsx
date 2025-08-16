@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import DashboardHeader from "../components/DashboardHeader";
 import DashboardSidebar from "../components/DashboardSidebar";
 import DashboardContent from "../components/DashboardContent";
+import { pricelistAPI } from "../services/api";
 import "./DashboardPage.css";
 
 const DashboardPage = () => {
@@ -16,13 +17,8 @@ const DashboardPage = () => {
 
   const fetchPricelistData = async () => {
     try {
-      const response = await fetch("/api/pricelist");
-      if (response.ok) {
-        const data = await response.json();
-        setPricelistData(data);
-      } else {
-        console.error("Failed to fetch pricelist data");
-      }
+      const response = await pricelistAPI.getAll();
+      setPricelistData(response.data);
     } catch (error) {
       console.error("Error fetching pricelist data:", error);
     } finally {
@@ -36,15 +32,9 @@ const DashboardPage = () => {
 
   const handleSaveEdit = async (rowId, updatedData) => {
     try {
-      const response = await fetch(`/api/pricelist/${rowId}`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedData),
-      });
+      const response = await pricelistAPI.update(rowId, updatedData);
 
-      if (response.ok) {
+      if (response.status === 200) {
         // Update local state
         setPricelistData((prevData) =>
           prevData.map((item) => (item.id === rowId ? { ...item, ...updatedData } : item))
