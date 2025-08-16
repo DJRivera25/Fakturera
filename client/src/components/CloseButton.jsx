@@ -11,3 +11,4 @@ const CloseButton = ({ language, onClick }) => {
 
 export default CloseButton;
 
+

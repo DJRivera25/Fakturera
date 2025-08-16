@@ -244,3 +244,4 @@ async function seedPricelist() {
 
 module.exports = seedPricelist;
 
+

@@ -1,22 +1,21 @@
 .terms-page {
   min-height: 100vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
+  background: url("https://storage.123fakturera.se/public/wallpapers/sverige43.jpg") center/cover no-repeat fixed;
 }
 
-.background-image {
+/* .background-image {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
+  min-height: 100vh;
   height: 100%;
   background-image: url("https://storage.123fakturera.se/public/wallpapers/sverige43.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   z-index: -1;
-}
+} */
 
 .terms-page-container {
   display: flex;

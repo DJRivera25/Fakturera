@@ -47,9 +47,6 @@ const TermsPage = () => {
 
   return (
     <div className="terms-page">
-      {/* Background Image */}
-      <div className="background-image"></div>
-
       {/* Navbar */}
       <Navbar language={language} onLanguageToggle={handleLanguageToggle} loading={loading} />
 
