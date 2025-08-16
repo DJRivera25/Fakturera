@@ -1,0 +1,132 @@
+.dashboard-sidebar {
+  width: 220px;
+  background: white;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 10;
+}
+
+.sidebar-header {
+  padding: 10px 0px;
+  margin: 0px 20px;
+  border-bottom: 2px solid #2563eb;
+  text-align: center;
+}
+
+.sidebar-header h2 {
+  font-size: 18px;
+  font-weight: 600;
+  color: #374151;
+  margin: 0;
+  position: relative;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 0;
+  overflow-y: auto;
+}
+
+.nav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-item {
+  margin: 0;
+  position: relative;
+}
+
+.nav-link {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px;
+  color: #374151;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  position: relative;
+  gap: 12px;
+}
+
+.nav-link:hover {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+.nav-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  color: #00d4f0;
+}
+
+.nav-text {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.active-indicator {
+  position: absolute;
+  left: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: #10b981;
+  border-radius: 50%;
+}
+
+.nav-item[data-id="customers"] .nav-icon {
+  color: #10b981;
+}
+
+.nav-item[data-id="pricelist"] .nav-icon {
+  color: #ff9900;
+}
+
+.nav-item[data-id="unpaid"] .nav-icon {
+  color: #ef4444;
+}
+
+.nav-item[data-id="offer"] .nav-icon {
+  color: #f8d300;
+}
+
+.nav-item[data-id="member"] .nav-icon {
+  color: #2563eb;
+}
+
+.nav-item[data-id="import"] .nav-icon {
+  color: #a200ffc2;
+}
+
+/* Responsive Design */
+
+/* Tablet (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .dashboard-sidebar {
+    display: none;
+  }
+}
+
+/* Phone Landscape (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .dashboard-sidebar {
+    display: none;
+  }
+}
+
+/* Phone Portrait (below 576px) */
+@media (max-width: 575px) {
+  .dashboard-sidebar {
+    display: none;
+  }
+}

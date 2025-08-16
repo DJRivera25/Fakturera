@@ -1,0 +1,323 @@
+.dashboard-table-container {
+  flex: 1;
+  overflow: auto;
+  padding: 24px 24px;
+  margin: 0px 40px;
+}
+
+.dashboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.dashboard-table th {
+  padding: 16px 12px;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.dashboard-table td {
+  padding: 12px;
+  border-bottom: 1px solid #f3f4f6;
+  font-size: 14px;
+  vertical-align: middle;
+}
+
+.dashboard-table tr {
+  position: relative; /* Added for absolute positioning of edit indicator */
+}
+
+.dashboard-table tr:hover {
+  background-color: #f9fafb;
+}
+
+.dashboard-table tr.editing {
+  background-color: #eff6ff;
+}
+
+.sortable {
+  cursor: pointer;
+}
+
+.sort-icon-a {
+  width: 16px;
+  height: 16px;
+  color: #00f7ff;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.sort-icon-p {
+  width: 16px;
+  height: 16px;
+  color: #2bff00;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.cell-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.edit-indicator {
+  position: absolute;
+  left: -5px; /* Position outside the table */
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #3b82f6;
+  z-index: 10;
+}
+
+/* Mobile table edit indicator positioning */
+.mobile-table-row {
+  position: relative; /* Added for absolute positioning */
+}
+
+.mobile-table-row.editing .edit-indicator {
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  color: #3b82f6;
+  z-index: 10;
+}
+
+.field-value {
+  padding: 6px 10px;
+  border-radius: 12px;
+  border: 2px solid #e2edff;
+  transition: all 0.2s ease;
+  cursor: default;
+  word-break: break-word;
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.field-value.editable {
+  cursor: pointer;
+  border-color: #d1d5db;
+}
+
+.field-value.editable:hover {
+  background: #e5e7eb;
+  border-color: #9ca3af;
+}
+
+.edit-input {
+  width: 100%;
+  padding: 6px 10px;
+  border: 2px solid #b1cfff;
+  border-radius: 12px;
+  font-size: 14px;
+  background: white;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.description-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 250px;
+}
+
+.description-cell .field-value {
+  flex: 1;
+  max-width: none;
+}
+
+.more-icon {
+  width: 16px;
+  height: 16px;
+  color: #6b7280;
+  flex-shrink: 0;
+}
+
+.row-edit-btn {
+  background: none;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+}
+
+.row-edit-btn:hover {
+  background-color: #f3f4f6;
+}
+
+/* Responsive Design */
+
+/* Tablet (768px - 991px) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .dashboard-table-container {
+    padding: 0 20px 20px;
+  }
+
+  .edit-indicator {
+    left: -20px; /* Adjust for tablet */
+  }
+
+  .mobile-table-row.editing .edit-indicator {
+    left: -16px; /* Adjust for tablet mobile */
+  }
+
+  .dashboard-table th {
+    padding: 14px 10px;
+    font-size: 13px;
+  }
+
+  .dashboard-table td {
+    padding: 10px;
+    font-size: 13px;
+  }
+
+  .field-value {
+    padding: 5px 8px;
+    max-width: 180px;
+    font-size: 13px;
+  }
+
+  .edit-input {
+    padding: 5px 8px;
+    font-size: 13px;
+  }
+
+  .description-cell {
+    max-width: 220px;
+  }
+
+  .sort-icon,
+  .edit-indicator,
+  .more-icon {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Phone Landscape (576px - 767px) */
+@media (min-width: 576px) and (max-width: 767px) {
+  .dashboard-table-container {
+    padding: 0 16px 16px;
+  }
+
+  .edit-indicator {
+    left: -16px; /* Adjust for phone landscape */
+  }
+
+  .mobile-table-row.editing .edit-indicator {
+    left: -12px; /* Adjust for phone landscape mobile */
+  }
+
+  .dashboard-table {
+    font-size: 12px;
+  }
+
+  .dashboard-table th {
+    padding: 12px 8px;
+    font-size: 12px;
+  }
+
+  .dashboard-table td {
+    padding: 8px;
+    font-size: 12px;
+  }
+
+  .field-value {
+    padding: 4px 6px;
+    max-width: 150px;
+    font-size: 12px;
+  }
+
+  .edit-input {
+    padding: 4px 6px;
+    font-size: 12px;
+  }
+
+  .description-cell {
+    max-width: 180px;
+  }
+
+  .sort-icon,
+  .edit-indicator,
+  .more-icon {
+    width: 12px;
+    height: 12px;
+  }
+
+  .cell-content {
+    gap: 6px;
+  }
+}
+
+/* Phone Portrait (below 576px) */
+@media (max-width: 575px) {
+  .dashboard-table-container {
+    padding: 0 12px 12px;
+  }
+
+  .edit-indicator {
+    left: -12px; /* Adjust for phone portrait */
+  }
+
+  .mobile-table-row.editing .edit-indicator {
+    left: -8px; /* Adjust for phone portrait mobile */
+  }
+
+  .dashboard-table {
+    font-size: 11px;
+  }
+
+  .dashboard-table th {
+    padding: 10px 6px;
+    font-size: 11px;
+  }
+
+  .dashboard-table td {
+    padding: 6px;
+    font-size: 11px;
+  }
+
+  .field-value {
+    padding: 3px 5px;
+    max-width: 120px;
+    font-size: 11px;
+  }
+
+  .edit-input {
+    padding: 3px 5px;
+    font-size: 11px;
+  }
+
+  .description-cell {
+    max-width: 150px;
+  }
+
+  .sort-icon,
+  .edit-indicator,
+  .more-icon {
+    width: 10px;
+    height: 10px;
+  }
+
+  .cell-content {
+    gap: 4px;
+  }
+
+  .description-cell {
+    gap: 4px;
+  }
+}
