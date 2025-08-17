@@ -68,8 +68,8 @@ const Navbar = ({ language, onLanguageToggle, loading }) => {
         {/* Right side - Navigation links and Language selector */}
         <div className="navbar-right">
           {/* Navigation Links - Hidden during loading and when menu is open */}
-          {!loading && !isMenuOpen && (
-            <nav className="nav-links">
+          {!loading && (
+            <nav className={`nav-links ${isMenuOpen ? "mobile-menu-open" : ""}`}>
               {navLinks.map((link, index) => (
                 <a key={index} href={link.href} className="nav-link">
                   {language === "en" ? link.en : link.sv}
