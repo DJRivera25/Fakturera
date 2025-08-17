@@ -37,8 +37,8 @@
 }
 
 .hamburger-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
 }
 
 .user-info {
@@ -119,10 +119,17 @@
 
 /* Responsive Design */
 
-/* Tablet (768px - 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
   .dashboard-header {
     padding: 16px 24px;
+  }
+
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .user-info {
+    display: none;
   }
 
   .user-info {
@@ -148,10 +155,9 @@
   }
 }
 
-/* Phone Landscape (576px - 767px) */
 @media (min-width: 576px) and (max-width: 767px) {
   .dashboard-header {
-    padding: 14px 20px;
+    padding: 14px 30px;
   }
 
   .hamburger-menu {
@@ -171,10 +177,9 @@
   }
 }
 
-/* Phone Portrait (below 576px) */
 @media (max-width: 575px) {
   .dashboard-header {
-    padding: 12px 16px;
+    padding: 12px 30px;
   }
 
   .hamburger-menu {

@@ -46,18 +46,15 @@ const DashboardTable = ({ data, editingRow, onRowEdit, onSaveEdit }) => {
   };
 
   const handleFieldSave = (rowId, fieldName) => {
-    const newValue = editValues[fieldName];
-    const originalValue = data.find((row) => row.id === rowId)?.[fieldName];
+    const newValue = editValues[fieldName] || "";
+    const originalValue = data.find((row) => row.id === rowId)?.[fieldName] || "";
 
-    // Check if the value has actually changed
     if (newValue === originalValue) {
-      // No change, just exit editing mode without API call
       setEditingField(null);
       setEditValues({});
       return;
     }
 
-    // Value has changed, proceed with API call
     const updatedData = { [fieldName]: newValue };
     onSaveEdit(rowId, updatedData);
     setEditingField(null);
@@ -86,7 +83,7 @@ const DashboardTable = ({ data, editingRow, onRowEdit, onSaveEdit }) => {
       return (
         <input
           type="text"
-          value={editValues[fieldName] || value}
+          value={editValues[fieldName] !== undefined ? editValues[fieldName] : value || ""}
           onChange={(e) => handleFieldChange(fieldName, e.target.value)}
           onBlur={() => handleFieldSave(row.id, fieldName)}
           onKeyDown={(e) => handleKeyPress(e, row.id, fieldName)}
@@ -98,16 +95,16 @@ const DashboardTable = ({ data, editingRow, onRowEdit, onSaveEdit }) => {
     return (
       <div
         className={`field-value ${editingRow === row.id ? "editable" : ""}`}
-        onClick={() => handleFieldClick(row.id, fieldName, value)}
+        onClick={() => handleFieldClick(row.id, fieldName, value || "")}
       >
-        {value}
+        {value || ""}
       </div>
     );
   };
 
   return (
     <div className="dashboard-table-container" ref={tableRef}>
-      {/* Desktop/Tablet Table */}
+      {/* Desktop Table */}
       <table className="dashboard-table desktop-table">
         <thead>
           <tr>
@@ -131,10 +128,8 @@ const DashboardTable = ({ data, editingRow, onRowEdit, onSaveEdit }) => {
           {data.map((row) => (
             <tr key={row.id} className={editingRow === row.id ? "editing" : ""}>
               <td>
-                <div className="cell-content">
-                  {editingRow === row.id && <ChevronRight className="edit-indicator" />}
-                  {renderField(row, "articleNo", row.articleNo)}
-                </div>
+                {editingRow === row.id && <ChevronRight className="edit-indicator" />}
+                {renderField(row, "articleNo", row.articleNo)}
               </td>
               <td>{renderField(row, "productService", row.productService)}</td>
               <td>{renderField(row, "inPrice", row.inPrice)}</td>
@@ -152,27 +147,70 @@ const DashboardTable = ({ data, editingRow, onRowEdit, onSaveEdit }) => {
         </tbody>
       </table>
 
-      {/* Mobile Table */}
-      <div className="mobile-table">
-        <div className="mobile-table-header">
-          <div className="mobile-header-cell">Product/Service</div>
-          <div className="mobile-header-cell">Price</div>
-        </div>
-        <div className="mobile-table-body">
+      {/* Tablet Table */}
+      <table className="dashboard-table tablet-table">
+        <thead>
+          <tr>
+            <th className="sortable">
+              Article No.
+              <ChevronDown className="sort-icon-a" />
+            </th>
+            <th className="sortable">
+              Product/Service
+              <ChevronDown className="sort-icon-p" />
+            </th>
+            <th>Price</th>
+            <th>In Stock</th>
+            <th>Unit</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
           {data.map((row) => (
-            <div key={row.id} className={`mobile-table-row ${editingRow === row.id ? "editing" : ""}`}>
-              <div className="mobile-cell">
+            <tr key={row.id} className={editingRow === row.id ? "editing" : ""}>
+              <td>
+                {editingRow === row.id && <ChevronRight className="edit-indicator" />}
+                {renderField(row, "articleNo", row.articleNo)}
+              </td>
+              <td>{renderField(row, "productService", row.productService)}</td>
+              <td>{renderField(row, "price", row.price)}</td>
+              <td>{renderField(row, "inStock", row.inStock)}</td>
+              <td>{renderField(row, "unit", row.unit)}</td>
+              <td>
+                <MoreHorizontal className="more-icon" />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Mobile Table */}
+      <table className="dashboard-table mobile-table">
+        <thead>
+          <tr>
+            <th className="sortable">
+              Product/Service
+              <ChevronDown className="sort-icon-p" />
+            </th>
+            <th>Price</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((row) => (
+            <tr key={row.id} className={editingRow === row.id ? "editing" : ""}>
+              <td>
                 {editingRow === row.id && <ChevronRight className="edit-indicator" />}
                 {renderField(row, "productService", row.productService)}
-              </div>
-              <div className="mobile-cell">
-                {renderField(row, "price", row.price)}
-                <MoreVertical className="more-icon" />
-              </div>
-            </div>
+              </td>
+              <td>{renderField(row, "price", row.price)}</td>
+              <td>
+                <MoreHorizontal className="more-icon" />
+              </td>
+            </tr>
           ))}
-        </div>
-      </div>
+        </tbody>
+      </table>
     </div>
   );
 };

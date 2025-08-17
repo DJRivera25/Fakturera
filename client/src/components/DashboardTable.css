@@ -13,8 +13,20 @@
   overflow: hidden;
 }
 
+.desktop-table {
+  display: table;
+}
+
+.tablet-table {
+  display: none;
+}
+
+.mobile-table {
+  display: none;
+}
+
 .dashboard-table th {
-  padding: 16px 12px;
+  padding: 16px 8px;
   text-align: left;
   font-size: 14px;
   font-weight: 600;
@@ -22,14 +34,14 @@
 }
 
 .dashboard-table td {
-  padding: 12px;
+  padding: 12px 8px;
   border-bottom: 1px solid #f3f4f6;
   font-size: 14px;
   vertical-align: middle;
 }
 
 .dashboard-table tr {
-  position: relative; /* Added for absolute positioning of edit indicator */
+  position: relative;
 }
 
 .dashboard-table tr:hover {
@@ -60,15 +72,9 @@
   vertical-align: middle;
 }
 
-.cell-content {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
 .edit-indicator {
   position: absolute;
-  left: -5px; /* Position outside the table */
+  left: -5px;
   top: 50%;
   transform: translateY(-50%);
   width: 16px;
@@ -77,9 +83,8 @@
   z-index: 10;
 }
 
-/* Mobile table edit indicator positioning */
 .mobile-table-row {
-  position: relative; /* Added for absolute positioning */
+  position: relative;
 }
 
 .mobile-table-row.editing .edit-indicator {
@@ -94,13 +99,13 @@
 }
 
 .field-value {
-  padding: 6px 10px;
+  padding: 4px 8px;
   border-radius: 12px;
   border: 2px solid #e2edff;
   transition: all 0.2s ease;
   cursor: default;
   word-break: break-word;
-  max-width: 250px;
+  max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -118,7 +123,7 @@
 
 .edit-input {
   width: 100%;
-  padding: 6px 10px;
+  padding: 4px 8px;
   border: 2px solid #b1cfff;
   border-radius: 12px;
   font-size: 14px;
@@ -130,7 +135,7 @@
 .description-cell {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   max-width: 250px;
 }
 
@@ -161,43 +166,139 @@
 
 /* Responsive Design */
 
-/* Tablet (768px - 991px) */
-@media (min-width: 768px) and (max-width: 991px) {
+@media (min-width: 992px) and (max-width: 1442px) {
   .dashboard-table-container {
-    padding: 0 20px 20px;
-  }
-
-  .edit-indicator {
-    left: -20px; /* Adjust for tablet */
-  }
-
-  .mobile-table-row.editing .edit-indicator {
-    left: -16px; /* Adjust for tablet mobile */
+    padding: 20px 20px;
+    margin: 0px 0px;
   }
 
   .dashboard-table th {
-    padding: 14px 10px;
+    padding: 14px 6px;
     font-size: 13px;
   }
 
   .dashboard-table td {
-    padding: 10px;
+    padding: 10px 6px;
     font-size: 13px;
   }
 
   .field-value {
-    padding: 5px 8px;
-    max-width: 180px;
+    padding: 3px 6px;
+    max-width: 200px;
     font-size: 13px;
   }
 
   .edit-input {
-    padding: 5px 8px;
+    padding: 3px 6px;
     font-size: 13px;
   }
 
   .description-cell {
-    max-width: 220px;
+    max-width: 160px;
+  }
+
+  .cell-content {
+    gap: 3px;
+  }
+
+  .desktop-table th:nth-child(1),
+  .desktop-table td:nth-child(1) {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .desktop-table th:nth-child(2),
+  .desktop-table td:nth-child(2) {
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
+  }
+
+  .desktop-table th:nth-child(3),
+  .desktop-table td:nth-child(3) {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .desktop-table th:nth-child(4),
+  .desktop-table td:nth-child(4) {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .desktop-table th:nth-child(5),
+  .desktop-table td:nth-child(5) {
+    width: 80px;
+    min-width: 80px;
+    max-width: 80px;
+  }
+
+  .desktop-table th:nth-child(6),
+  .desktop-table td:nth-child(6) {
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+  }
+
+  .desktop-table th:nth-child(7),
+  .desktop-table td:nth-child(7) {
+    width: 150px;
+    min-width: 150px;
+    max-width: 150px;
+  }
+
+  .desktop-table th:nth-child(8),
+  .desktop-table td:nth-child(8) {
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .dashboard-table-container {
+    padding: 0px 24px;
+    margin: 0px 0px;
+  }
+
+  .edit-indicator {
+    left: -5px;
+  }
+
+  .mobile-table-row.editing .edit-indicator {
+    left: -5px;
+  }
+
+  .dashboard-table th {
+    padding: 14px 4px;
+    font-size: 13px;
+  }
+
+  .dashboard-table td {
+    padding: 10px 4px;
+    font-size: 13px;
+  }
+
+  .field-value {
+    padding: 3px 6px;
+    max-width: 200px;
+    font-size: 13px;
+  }
+
+  .edit-input {
+    padding: 3px 6px;
+    font-size: 13px;
+  }
+
+  .description-cell {
+    max-width: 180px;
+  }
+
+  .field-value {
+    text-align: center;
   }
 
   .sort-icon,
@@ -206,20 +307,82 @@
     width: 14px;
     height: 14px;
   }
+
+  .desktop-table {
+    display: none;
+  }
+
+  .tablet-table {
+    display: table;
+  }
+
+  .mobile-table {
+    display: none;
+  }
+
+  .tablet-table th:nth-child(1),
+  .tablet-table td:nth-child(1) {
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+  }
+
+  .tablet-table th:nth-child(2),
+  .tablet-table td:nth-child(2) {
+    width: 180px;
+    min-width: 180px;
+    max-width: 180px;
+  }
+
+  .tablet-table th:nth-child(3),
+  .tablet-table td:nth-child(3) {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .tablet-table th:nth-child(4),
+  .tablet-table td:nth-child(4) {
+    width: 100px;
+    min-width: 100px;
+    max-width: 100px;
+  }
+
+  .tablet-table th:nth-child(5),
+  .tablet-table td:nth-child(5) {
+    width: 120px;
+    min-width: 120px;
+    max-width: 120px;
+  }
+
+  .tablet-table th:nth-child(6),
+  .tablet-table td:nth-child(6) {
+    width: 60px;
+    min-width: 60px;
+    max-width: 60px;
+  }
 }
 
-/* Phone Landscape (576px - 767px) */
 @media (min-width: 576px) and (max-width: 767px) {
   .dashboard-table-container {
-    padding: 0 16px 16px;
+    padding: 0px 16px;
+    margin: 0px 0px;
   }
 
   .edit-indicator {
-    left: -16px; /* Adjust for phone landscape */
+    left: -16px;
   }
 
   .mobile-table-row.editing .edit-indicator {
-    left: -12px; /* Adjust for phone landscape mobile */
+    left: -12px;
+  }
+
+  .desktop-table {
+    display: none;
+  }
+
+  .mobile-table {
+    display: block;
   }
 
   .dashboard-table {
@@ -227,24 +390,24 @@
   }
 
   .dashboard-table th {
-    padding: 12px 8px;
-    font-size: 12px;
+    padding: 12px 4px;
+    font-size: 18px;
   }
 
   .dashboard-table td {
-    padding: 8px;
-    font-size: 12px;
+    padding: 8px 8px;
+    font-size: 18px;
   }
 
   .field-value {
-    padding: 4px 6px;
-    max-width: 150px;
-    font-size: 12px;
+    padding: 2px 5px;
+    max-width: none;
+    font-size: 18px;
   }
 
   .edit-input {
-    padding: 4px 6px;
-    font-size: 12px;
+    padding: 2px 4px;
+    font-size: 18px;
   }
 
   .description-cell {
@@ -254,52 +417,85 @@
   .sort-icon,
   .edit-indicator,
   .more-icon {
-    width: 12px;
-    height: 12px;
+    width: 20px;
+    height: 20px;
   }
 
   .cell-content {
     gap: 6px;
   }
+
+  .field-value {
+    text-align: center;
+  }
+
+  .mobile-table th:nth-child(1),
+  .mobile-table td:nth-child(1) {
+    width: 400px;
+    min-width: 200px;
+    max-width: 400px;
+  }
+
+  .mobile-table th:nth-child(2),
+  .mobile-table td:nth-child(2) {
+    width: 30%;
+    min-width: 30%;
+    max-width: 30%;
+  }
+
+  .mobile-table th:nth-child(3),
+  .mobile-table td:nth-child(3) {
+    width: 10%;
+    min-width: 10%;
+    max-width: 10%;
+  }
 }
 
-/* Phone Portrait (below 576px) */
 @media (max-width: 575px) {
   .dashboard-table-container {
-    padding: 0 12px 12px;
+    padding: 0px 16px;
+    margin: 0px 0px;
   }
 
   .edit-indicator {
-    left: -12px; /* Adjust for phone portrait */
+    left: -12px;
   }
 
   .mobile-table-row.editing .edit-indicator {
-    left: -8px; /* Adjust for phone portrait mobile */
+    left: -8px;
+  }
+
+  .desktop-table {
+    display: none;
+  }
+
+  .mobile-table {
+    display: block;
   }
 
   .dashboard-table {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .dashboard-table th {
-    padding: 10px 6px;
-    font-size: 11px;
+    padding: 10px 3px;
+    font-size: 14px;
   }
 
   .dashboard-table td {
-    padding: 6px;
-    font-size: 11px;
+    padding: 6px 5px;
+    font-size: 14px;
   }
 
   .field-value {
-    padding: 3px 5px;
-    max-width: 120px;
-    font-size: 11px;
+    padding: 2px 5px;
+    max-width: none;
+    font-size: 14px;
   }
 
   .edit-input {
-    padding: 3px 5px;
-    font-size: 11px;
+    padding: 1px 3px;
+    font-size: 14px;
   }
 
   .description-cell {
@@ -309,8 +505,8 @@
   .sort-icon,
   .edit-indicator,
   .more-icon {
-    width: 10px;
-    height: 10px;
+    width: 20px;
+    height: 20px;
   }
 
   .cell-content {
@@ -319,5 +515,42 @@
 
   .description-cell {
     gap: 4px;
+  }
+
+  .field-value {
+    text-align: center;
+  }
+
+  .desktop-table {
+    display: none;
+  }
+
+  .tablet-table {
+    display: none;
+  }
+
+  .mobile-table {
+    display: block;
+  }
+
+  .mobile-table th:nth-child(1),
+  .mobile-table td:nth-child(1) {
+    width: 200px;
+    min-width: 200px;
+    max-width: 200px;
+  }
+
+  .mobile-table th:nth-child(2),
+  .mobile-table td:nth-child(2) {
+    width: 25%;
+    min-width: 25%;
+    max-width: 25%;
+  }
+
+  .mobile-table th:nth-child(3),
+  .mobile-table td:nth-child(3) {
+    width: 5%;
+    min-width: 5%;
+    max-width: 5%;
   }
 }

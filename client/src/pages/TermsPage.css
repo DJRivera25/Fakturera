@@ -64,7 +64,6 @@
 
 /* Responsive Design */
 
-/* Large Desktop (1200px and above) */
 @media (min-width: 1200px) {
   .terms-page-container {
     padding: 0px 40px;
@@ -82,7 +81,6 @@
   }
 }
 
-/* Desktop (992px - 1199px) */
 @media (min-width: 992px) and (max-width: 1199px) {
   .terms-page-container {
     padding: 0px 35px;
@@ -100,7 +98,6 @@
   }
 }
 
-/* Tablet (768px - 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
   .terms-page-container {
     padding: 0px 25px;
@@ -118,7 +115,6 @@
   }
 }
 
-/* Phone Landscape (576px - 767px) */
 @media (min-width: 576px) and (max-width: 767px) {
   .terms-page-container {
     padding: 0px 20px;
@@ -136,7 +132,6 @@
   }
 }
 
-/* Phone Portrait (below 576px) */
 @media (max-width: 575px) {
   .terms-page-container {
     padding: 0px 15px;

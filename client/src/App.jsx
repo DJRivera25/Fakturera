@@ -10,8 +10,7 @@ function App() {
       <main className="main">
         <Routes>
           <Route path="/" element={<TermsPage />} />
-          <Route path="/pricelist" element={<div>Pricelist Page Coming Soon</div>} />
-          <Route path="/page" element={<DashboardPage />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
         </Routes>
       </main>
     </div>

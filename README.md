@@ -1,13 +1,25 @@
 # Fakturera App
 
-A mini full-stack application replicating the Terms page from 123fakturera.se.
+A mini full-stack application replicating the Terms page from 123fakturera.se and featuring a comprehensive dashboard for pricelist management.
 
 ## Features
+
+### Terms Page
 
 - **Terms Page**: Replica of the original terms page with language toggle (English/Swedish)
 - **Responsive Design**: Works on mobile, tablet, and desktop
 - **Database Integration**: PostgreSQL with Sequelize ORM
 - **Dynamic API Configuration**: Environment-based API URL management
+
+### Dashboard Page
+
+- **Pricelist Management**: Full CRUD operations for product/service data
+- **Responsive Table**: Adapts to desktop, tablet, and mobile views
+- **Inline Editing**: Click-to-edit functionality with real-time updates
+- **Search Functionality**: Search by Article No. and Product/Service
+- **Action Buttons**: New Product, Print List, and Advanced Mode
+- **Column Management**: Different column visibility per device type
+- **Modern UI**: Clean, professional interface with hover effects
 
 ## Tech Stack
 
@@ -17,6 +29,7 @@ A mini full-stack application replicating the Terms page from 123fakturera.se.
 - Vite 5.0.0
 - Vanilla CSS (no frameworks)
 - Axios 1.6.2 for API calls
+- Lucide React for icons
 
 ### Backend
 
@@ -39,9 +52,14 @@ fakturera/
 │   │   ├── components/     # Reusable components
 │   │   │   ├── CloseButton.jsx
 │   │   │   ├── Navbar.jsx
-│   │   │   └── TermsContent.jsx
+│   │   │   ├── TermsContent.jsx
+│   │   │   ├── DashboardHeader.jsx
+│   │   │   ├── DashboardSidebar.jsx
+│   │   │   ├── DashboardContent.jsx
+│   │   │   └── DashboardTable.jsx
 │   │   ├── pages/         # Page components
-│   │   │   └── TermsPage.jsx
+│   │   │   ├── TermsPage.jsx
+│   │   │   └── DashboardPage.jsx
 │   │   ├── services/      # API services
 │   │   │   └── api.js
 │   │   ├── config/        # Configuration files
@@ -56,11 +74,14 @@ fakturera/
 ├── server/                # Express backend
 │   ├── models/           # Sequelize models
 │   │   ├── index.js
-│   │   └── Terms.js
+│   │   ├── Terms.js
+│   │   └── Pricelist.js
 │   ├── routes/           # API routes
-│   │   └── terms.js
+│   │   ├── terms.js
+│   │   └── pricelist.js
 │   ├── seeders/          # Database seeders
-│   │   └── terms-seeder.js
+│   │   ├── terms-seeder.js
+│   │   └── pricelist-seeder.js
 │   ├── config/           # Configuration
 │   │   └── cors.js
 │   ├── index.js          # Main server file
@@ -149,6 +170,18 @@ This will start both:
 - Frontend: http://localhost:3000
 - Backend: http://localhost:5000
 
+## Pages & Routes
+
+### Terms Page
+
+- **Route**: `/` (default)
+- **Features**: Language toggle, responsive design, database-driven content
+
+### Dashboard Page
+
+- **Route**: `/dashboard` (manual navigation)
+- **Features**: inline editing, responsive table, database-driven content
+
 ## API Endpoints
 
 ### Terms
@@ -156,6 +189,11 @@ This will start both:
 - `GET /api/terms` - Get all terms
 - `GET /api/terms/:language` - Get terms by language (en/sv)
 - `PUT /api/terms/:id` - Update terms content
+
+### Pricelist
+
+- `GET /api/pricelist` - Get all pricelist items
+- `PUT /api/pricelist/:id` - Update pricelist item
 
 ## Database Schema
 
@@ -171,21 +209,70 @@ CREATE TABLE terms (
 );
 ```
 
+### Pricelist Table
+
+```sql
+CREATE TABLE pricelist (
+  id SERIAL PRIMARY KEY,
+  articleNo VARCHAR(255),
+  productService TEXT,
+  inPrice DECIMAL(10,2),
+  price DECIMAL(10,2),
+  unit VARCHAR(255),
+  inStock INTEGER,
+  description TEXT,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
 ## Responsive Design
 
 The application is fully responsive with breakpoints:
 
-- **Desktop**: > 768px
-- **Tablet**: 768px and below
-- **Mobile Landscape**: 480px and below
-- **Mobile Portrait**: 320px and below
+- **Desktop**: > 992px
+- **Tablet**: 768px - 991px
+- **Mobile Landscape**: 576px - 767px
+- **Mobile Portrait**: < 576px
 
 ### Responsive Features
+
+#### Terms Page
 
 - Navigation links hide on mobile/tablet
 - Hamburger menu for mobile navigation
 - Touch-friendly interface elements
 - Responsive text sizing and spacing
+
+#### Dashboard Page
+
+- **Desktop**: Full table with all columns
+- **Tablet**: Simplified table (hides In Price, Description)
+- **Mobile**: Minimal table (Product/Service, Price only)
+- **Column Reordering**: In Stock and Unit columns swapped in tablet view
+- **Full-Width Elements**: Search inputs and action buttons stretch to full width on mobile
+- **Centered Text**: Field values centered on tablet and mobile
+
+## Dashboard Features
+
+### Table Functionality
+
+- **Inline Editing**: Click any field to edit, press Enter to save, Escape to cancel
+- **Real-time Updates**: Changes saved to database immediately
+- **Visual Feedback**: Blue arrow indicator for editing row
+- **Click Outside**: Click outside table to exit editing mode
+
+### Search & Actions
+
+- **Search Fields**: Search by Article No. and Product/Service
+- **Action Buttons**: New Product, Print List, Advanced Mode
+- **Responsive Layout**: Full-width on mobile, horizontal on desktop
+
+### Column Management
+
+- **Desktop**: All 8 columns visible
+- **Tablet**: 6 columns (hides In Price, Description)
+- **Mobile**: 3 columns (Product/Service, Price, Actions)
 
 ## External Resources
 
@@ -270,12 +357,16 @@ VITE_NODE_ENV=development
    - Check browser console for CORS errors
 
 3. **Build Errors**
+
    - Clear `node_modules` and reinstall
    - Check Node.js version compatibility
    - Verify all environment variables are set
 
+4. **Dashboard Not Loading**
+   - Ensure pricelist data is seeded in database
+   - Check API endpoints are working
+   - Verify frontend can connect to backend
+
 ## License
 
 This project is for demonstration purposes only.
-
-

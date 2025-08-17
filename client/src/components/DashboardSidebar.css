@@ -10,29 +10,18 @@
 }
 
 .dashboard-sidebar .sidebar-header {
-  padding: 24px 20px 16px;
-  border-bottom: 1px solid #e5e7eb;
+  padding: 12px 0px;
+  margin: 0px 24px;
+  border-bottom: 2px solid #3b82f6;
   text-align: center;
 }
 
 .dashboard-sidebar .sidebar-header h2 {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 600;
   color: #374151;
   margin: 0;
   position: relative;
-}
-
-.dashboard-sidebar .sidebar-header h2::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 2px;
-  background: #3b82f6;
-  border-radius: 1px;
 }
 
 .dashboard-sidebar .sidebar-nav {
@@ -95,7 +84,6 @@
   border-radius: 50%;
 }
 
-/* Specific icon colors for certain menu items */
 .dashboard-sidebar .nav-item[data-id="customers"] .nav-icon {
   color: #10b981;
 }
@@ -120,25 +108,14 @@
   color: #a200ffc2;
 }
 
-/* Responsive Design */
-
-/* Large Desktop (1200px and above) */
-@media (min-width: 1200px) {
+@media (min-width: 992px) and (max-width: 1443px) {
   .dashboard-sidebar {
-    width: 220px;
-  }
-
-  .dashboard-sidebar .sidebar-header {
-    padding: 28px 24px 20px;
-  }
-
-  .dashboard-sidebar .sidebar-header h2 {
-    font-size: 20px;
+    width: 190px;
   }
 
   .dashboard-sidebar .nav-link {
-    padding: 14px 24px;
-    font-size: 15px;
+    padding: 10px 25px;
+    font-size: 12px;
   }
 
   .dashboard-sidebar .nav-icon {
@@ -151,37 +128,20 @@
   }
 }
 
-/* Desktop (992px - 1199px) */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .dashboard-sidebar {
-    width: 220px;
-  }
+/* Responsive Design */
 
-  .dashboard-sidebar .sidebar-header {
-    padding: 24px 20px 16px;
-  }
-
-  .dashboard-sidebar .nav-link {
-    padding: 12px 20px;
-    font-size: 14px;
-  }
-}
-
-/* Tablet (768px - 991px) */
 @media (min-width: 768px) and (max-width: 991px) {
   .dashboard-sidebar {
     display: none;
   }
 }
 
-/* Phone Landscape (576px - 767px) */
 @media (min-width: 576px) and (max-width: 767px) {
   .dashboard-sidebar {
     display: none;
   }
 }
 
-/* Phone Portrait (below 576px) */
 @media (max-width: 575px) {
   .dashboard-sidebar {
     display: none;

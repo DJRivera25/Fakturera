@@ -1,5 +1,5 @@
 import React from "react";
-import { User, ChevronDown, Menu } from "lucide-react";
+import { User, Menu } from "lucide-react";
 import "./DashboardHeader.css";
 
 const DashboardHeader = ({ language }) => {
