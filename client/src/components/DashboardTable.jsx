@@ -76,6 +76,11 @@ const DashboardTable = ({ data, editingRow, onRowEdit, onSaveEdit }) => {
     }
   };
 
+  const handleInputBlur = () => {
+    handleFieldCancel();
+    onRowEdit(null);
+  };
+
   const renderField = (row, fieldName, value) => {
     const isEditing = editingRow === row.id && editingField === fieldName;
 
@@ -85,7 +90,7 @@ const DashboardTable = ({ data, editingRow, onRowEdit, onSaveEdit }) => {
           type="text"
           value={editValues[fieldName] !== undefined ? editValues[fieldName] : value || ""}
           onChange={(e) => handleFieldChange(fieldName, e.target.value)}
-          onBlur={() => handleFieldSave(row.id, fieldName)}
+          onBlur={() => handleInputBlur(row.id, fieldName)}
           onKeyDown={(e) => handleKeyPress(e, row.id, fieldName)}
           className="edit-input"
         />
