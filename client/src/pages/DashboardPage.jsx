@@ -35,7 +35,6 @@ const DashboardPage = () => {
       const response = await pricelistAPI.update(rowId, updatedData);
 
       if (response.status === 200) {
-        // Update local state
         setPricelistData((prevData) =>
           prevData.map((item) => (item.id === rowId ? { ...item, ...updatedData } : item))
         );

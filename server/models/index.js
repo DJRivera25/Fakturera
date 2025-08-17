@@ -26,8 +26,7 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-// Import models
-db.Terms = require("./Terms")(sequelize, Sequelize);
-db.Pricelist = require("./Pricelist")(sequelize, Sequelize);
+db.Terms = require("./terms")(sequelize, Sequelize);
+db.Pricelist = require("./pricelist")(sequelize, Sequelize);
 
 module.exports = db;

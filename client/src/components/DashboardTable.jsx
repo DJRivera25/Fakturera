@@ -49,14 +49,6 @@ const DashboardTable = ({ data, editingRow, onRowEdit, onSaveEdit }) => {
     let newValue = editValues[fieldName] || "";
     const originalValue = data.find((row) => row.id === rowId)?.[fieldName] || "";
 
-    if (newValue === "") {
-      if (fieldName === "price" || fieldName === "inPrice") {
-        newValue = "0.00";
-      } else if (fieldName === "inStock") {
-        newValue = "0";
-      }
-    }
-
     if (newValue === originalValue) {
       setEditingField(null);
       setEditValues({});
@@ -92,11 +84,14 @@ const DashboardTable = ({ data, editingRow, onRowEdit, onSaveEdit }) => {
   const renderField = (row, fieldName, value) => {
     const isEditing = editingRow === row.id && editingField === fieldName;
 
+    // Handle display value properly (don't treat 0 as falsy)
+    const displayValue = value !== null && value !== undefined ? value : "";
+
     if (isEditing) {
       return (
         <input
           type="text"
-          value={editValues[fieldName] !== undefined ? editValues[fieldName] : value || ""}
+          value={editValues[fieldName] !== undefined ? editValues[fieldName] : displayValue}
           onChange={(e) => handleFieldChange(fieldName, e.target.value)}
           onBlur={() => handleInputBlur(row.id, fieldName)}
           onKeyDown={(e) => handleKeyPress(e, row.id, fieldName)}
@@ -108,9 +103,9 @@ const DashboardTable = ({ data, editingRow, onRowEdit, onSaveEdit }) => {
     return (
       <div
         className={`field-value ${editingRow === row.id ? "editable" : ""}`}
-        onClick={() => handleFieldClick(row.id, fieldName, value || "")}
+        onClick={() => handleFieldClick(row.id, fieldName, displayValue)}
       >
-        {value || ""}
+        {displayValue}
       </div>
     );
   };
