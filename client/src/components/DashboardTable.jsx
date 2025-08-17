@@ -46,8 +46,16 @@ const DashboardTable = ({ data, editingRow, onRowEdit, onSaveEdit }) => {
   };
 
   const handleFieldSave = (rowId, fieldName) => {
-    const newValue = editValues[fieldName] || "";
+    let newValue = editValues[fieldName] || "";
     const originalValue = data.find((row) => row.id === rowId)?.[fieldName] || "";
+
+    if (newValue === "") {
+      if (fieldName === "price" || fieldName === "inPrice") {
+        newValue = "0.00";
+      } else if (fieldName === "inStock") {
+        newValue = "0";
+      }
+    }
 
     if (newValue === originalValue) {
       setEditingField(null);
